@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { timingSafeEqual } from 'crypto';
+import Axios from 'axios';
 
 export default class CreateNote extends Component {
 
@@ -42,6 +44,21 @@ export default class CreateNote extends Component {
         console.log(`Description: ${this.state.description}`);
         console.log(`Name: ${this.state.name}`);
         console.log(`Priority: ${this.state.priority}`);
+
+        const newNote = {
+            description: this.state.description,
+            name: this.state.name,
+            priority: this.state.priority
+        }
+
+        Axios.post('/notes/add', newNote)
+            .then(res => console.log(res.data))
+        
+            this.setState({
+                description: '',
+                name: '',
+                priority: ''
+            })
 
     }
 

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Axios from 'axios';
 
 const Todo = props => (
     <tr>
         <td>{props.todo.description}</td>
         <td>{props.todo.name}</td>
         <td>{props.todo.priority}</td>
+        <td>{props.todo.date}</td>
     </tr>
 )
 
@@ -17,6 +19,15 @@ export default class ViewNote extends Component {
         this.state = {notes: []}
     }
 
+    componentDidMount() {
+        Axios.get('/notes')
+            .then(response => {
+                this.setState({ notes: response.data })
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
+    }
     noteList() {
         return this.state.notes.map(function(currentNote, i){
             return <Todo todo={currentNote} key={i} />;
@@ -33,6 +44,7 @@ export default class ViewNote extends Component {
                         <th>Description</th>
                         <th>Name</th>
                         <th>Priority</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -1,32 +1,25 @@
-version: '1'
+version: '3.0'
 services:
   react-app:
-    container_name: react-app
-    image: react-app
-    build: ./react-app
-    command: serve -s build
-    environment: 
-      NODE_ENV: production
+    build: client
+    image: react-cli
+    container_name: react-cli
+    volumes:
+      - .:/app
     ports: 
       - 3000:3000
   express-app:
-    container_name: express-app
-    image: express-app
-    build: ./express-app
-    command: node server.js
+    build: server
     ports: 
       - 5000:5000
-    depends_on:
-      - "mongo"
-    mongo:
-      container_name: mongo
+    links:
+      - database
+  database:
       image: "mongo"
       ports: 
         - "27017:27017"
-    adminmongo:
-      container_name: mongo
-      image: "mongo"
+      image: "firestore"
       ports: 
-        - "27017:27017"
+        - "8000:8000"
 
 

@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const admin = require('firebase-admin');
-const router = require('./api/MongoEP');
+const router = require('../api/MongoEP');
 const cors = require('cors');
 const app = express();
 
@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 // DB Config
 const serviceAccount = require('./config/ServiceAccountKey.json')
-const db = require('./config/keys').mongoURI
+const db = require('../config/keys').mongoURI
 
 // Connect to Firebase
 admin.initializeApp({

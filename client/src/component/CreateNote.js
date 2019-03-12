@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { timingSafeEqual } from 'crypto';
 import Axios from 'axios';
+
 
 export default class CreateNote extends Component {
 
@@ -50,8 +50,12 @@ export default class CreateNote extends Component {
             name: this.state.name,
             priority: this.state.priority
         }
-
+        // Mongo 
         Axios.post('/notes/add', newNote)
+            .then(res => console.log(res.data))
+        
+            // Firebase
+        Axios.post('/notes/addfb', newNote)
             .then(res => console.log(res.data))
         
             this.setState({
@@ -125,7 +129,7 @@ export default class CreateNote extends Component {
                 </div>
 
                 <div className="form-group">
-                    <input type="submit" value="Create Note" className="btn btn-primary" />
+                    <input  type="submit" className="btn btn-primary btn" value="Create Note"  />
                 </div>
             </form>
         </div>

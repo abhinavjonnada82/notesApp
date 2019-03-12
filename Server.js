@@ -1,15 +1,60 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const admin = require('firebase-admin');
+const router = require('./api/MongoEP');
+const cors = require('cors');
 const app = express();
 
+
+// Automatically allow cross-origin requests
+app.use(cors({ origin: true }));
 
 // Bodyparser Middleware
 app.use(bodyParser.json())
 
 // DB Config
+const serviceAccount = require('./config/ServiceAccountKey.json')
 const db = require('./config/keys').mongoURI
+
+// Connect to Firebase
+admin.initializeApp({
+   credential: admin.credential.cert(serviceAccount)
+})
+
+var dbFB = admin.firestore()
+// GET reterive notes form FB
+
+// router.get('/fb', (req, res) => {
+//    var citiesRef = db.collection('users').get()
+//   .then(snapshot => {
+//     if (snapshot.empty) {
+//       console.log('No matching documents.');
+//       return;
+//     }
+
+//     snapshot.forEach(doc => res.json(doc));
+//   })
+// })
+
+// Post adding notes from FB
+router.post('/addfb',(req, res) => {
+   var addDoc = dbFB.collection('users').add({
+      description: req.body.description,
+      name: req.body.name,
+      priority: req.body.priority
+    }).then(ref => {
+      console.log('Added document with ID: ', ref.id);
+    });
+})
+
+
+
+
+
+
+
+
 
 // Connect to Mongoose
 mongoose
@@ -18,32 +63,11 @@ mongoose
    .catch(err => console.log(err))
 
    
-const Note = require('./NotesSchema')
-const router = express.Router()
-// Use Routes
+
+// Use Mongoose Routes
 app.use('/notes', router)
-// @route GET  api/Notes
-// @desc GET ALL Notes
-// @access Public
-router.get('/',(req,res) => {
-   Note.find()
-      .sort({ date: -1 })
-      .then(notes => res.json(notes))
-})
 
-// @route POST  api/Note
-// @desc Create a Note
-// @access Public
-router.post('/add',(req,res) => {
-   const newNote = new Note({
-       description: req.body.description,
-       name: req.body.name,
-       priority: req.body.priority
-   })
 
-   newNote.save().then(note => res.json(note))
-
-})
 
 const port = process.env.PORT || 5000
 

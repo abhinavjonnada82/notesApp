@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import Axios from 'axios';
 
 const Todo = props => (
@@ -27,8 +26,22 @@ export default class ViewNote extends Component {
             .catch(function (error) {
                 console.log(error)
             })
+        // Axios.get('/notes/fb')
+        //     .then(response => {
+        //         this.setState({ notes: response.data })
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error)
+        //     })
     }
     noteList() {
+        return this.state.notes.map(function(currentNote, i){
+            return <Todo todo={currentNote} key={i} />;
+        })
+    }
+
+    
+    noteListfb() {
         return this.state.notes.map(function(currentNote, i){
             return <Todo todo={currentNote} key={i} />;
         })
@@ -51,6 +64,21 @@ export default class ViewNote extends Component {
                     { this.noteList() }
                 </tbody>
             </table>
+
+            {/* <h3>View Notes from FireBase</h3>
+            <table className="table table-striped" style={{ marginTop: 20 }} >
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Name</th>
+                        <th>Priority</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { this.noteListfb() }
+                </tbody>
+            </table> */}
         </div>
         )
     }

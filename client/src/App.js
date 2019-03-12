@@ -25,6 +25,9 @@ class App extends Component {
             </div>
           </nav>
           <br/>
+          <nav className="navbar fixed-bottom navbar-light bg-light">
+               <a className="navbar-brand" href="#"> ⓒ 2019 Abhinav Jonnada</a>
+          </nav>
 
           <Route path="/" exact component={ViewNote} />
           <Route path="/create" component={CreateNote} />

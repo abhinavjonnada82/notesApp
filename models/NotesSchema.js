@@ -6,7 +6,8 @@ const Notes = new Schema({
         type: String
     },
     name: {
-        type: String
+        type: String,
+        required: true
     },
     priority: {
         type: String

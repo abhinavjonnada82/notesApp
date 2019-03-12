@@ -5,8 +5,7 @@
 /.pnp
 .pnp.js
 
-# keys
-/config
+
 # testing
 /coverage
 

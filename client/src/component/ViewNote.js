@@ -26,13 +26,13 @@ export default class ViewNote extends Component {
             .catch(function (error) {
                 console.log(error)
             })
-        // Axios.get('/notes/fb')
-        //     .then(response => {
-        //         this.setState({ notes: response.data })
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error)
-        //     })
+        Axios.get('/notes/fb')
+            .then(response => {
+                this.setState({ notes: response.data })
+            })
+            .catch(function (error) {
+                console.log(error)
+            })
     }
     noteList() {
         return this.state.notes.map(function(currentNote, i){
@@ -41,11 +41,11 @@ export default class ViewNote extends Component {
     }
 
     
-    noteListfb() {
-        return this.state.notes.map(function(currentNote, i){
-            return <Todo todo={currentNote} key={i} />;
-        })
-    }
+    // noteListfb() {
+    //     return this.state.notes.map(function(currentNote, i){
+    //         return <Todo todo={currentNote} key={i} />;
+    //     })
+    // }
 
     render() {
         return (

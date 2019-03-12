@@ -25,17 +25,15 @@ admin.initializeApp({
 var dbFB = admin.firestore()
 // GET reterive notes form FB
 
-// router.get('/fb', (req, res) => {
-//    var citiesRef = db.collection('users').get()
-//   .then(snapshot => {
-//     if (snapshot.empty) {
-//       console.log('No matching documents.');
-//       return;
-//     }
+router.get('/fb', (req, res) => {
+   dbFB.collection('users').get()
+  .then(function(querySnapshot) {
+   querySnapshot.forEach(function(doc) {
+       // doc.data() is never undefined for query doc snapshots
+       console.log(doc.id, " => ", doc.data());
+   })
+})})
 
-//     snapshot.forEach(doc => res.json(doc));
-//   })
-// })
 
 // Post adding notes from FB
 router.post('/addfb',(req, res) => {

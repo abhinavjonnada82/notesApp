@@ -6,7 +6,7 @@ Note taking app built on React + Node.js with Firebase and MongoDB as databse...
 git clone repository
 run -> npm run server
 Link below demostrates my O/P
-[https://drive.google.com/open?id=1ycpTyoB5PUuvGmdcWB305md58oX3D7xo](url)
+https://drive.google.com/open?id=1ycpTyoB5PUuvGmdcWB305md58oX3D7xo
 
 Deployed on Google Cloud: https://makeitcount-20190.appspot.com/
 Shows successful deployment but the link doesn't work. 

@@ -20,6 +20,7 @@ If more time permits:
 -> Would Reduxify client side
 -> Would have used another Google database most likely MySQL
 -> Fix deployment and Docker issues
+-> Rigorous unit testing
 
 
 </strong>

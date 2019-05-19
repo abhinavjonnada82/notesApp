@@ -1,7 +1,7 @@
 <strong>
 
 # notesApp
-Note taking app built on React + Node.js with Firebase and MongoDB as databse.....
+Note taking app built on React + Node.js with Firebase and MongoDB as database.....
 ![mernpic1](https://user-images.githubusercontent.com/30497847/54632436-1d3cbb00-4a4c-11e9-966f-d186ae8e6c3c.PNG)
 ![mernpic](https://user-images.githubusercontent.com/30497847/54632437-1dd55180-4a4c-11e9-8fce-356c5b575891.PNG)
 
